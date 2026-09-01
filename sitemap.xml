@@ -1,52 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://wang-chaojun.github.io/</loc></url>
-  <url><loc>https://wang-chaojun.github.io/CorePeriphery_Wang_0418.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/CorePeriphery_Wang_0507.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/Wang_CP.pdf</loc></url>
   <url><loc>https://wang-chaojun.github.io/Wang_CV.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/Wang_CorePeriphery.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/Wang_Vitae.docx</loc></url>
-  <url><loc>https://wang-chaojun.github.io/Wang_Vitae3.docx</loc></url>
-  <url><loc>https://wang-chaojun.github.io/Wang_Vitae3.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/Wang_Vitae_19.docx</loc></url>
-  <url><loc>https://wang-chaojun.github.io/Wang_Vitae_19.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/Wang_Vitae_2205.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_AllenWittwer.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_AllenWittwer2.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_An.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_AnandMuravyev.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_AoyagiYuki.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_BenosHuangMenkveldVasios.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_BrunnermeierPayne.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_CapponiJiaWang.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_ChangZhang.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_ChincoFos.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_ChoiHanShinYoon.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_ErnstSokobinSpatt.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_FarleyKelleyPuckett.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_HautschScheuchVoigt.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_KanielOppChen.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_KhetanLiNeamtuIshita.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_Kuong.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_LeeMartinTownsend.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_Liu.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_MaXiaoZeng.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_Mollner.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_Pagnotta.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_Wu.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/discussions/Wang_Xu.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/papers/chasing_adverse_selection.pdf</loc></url>
   <url><loc>https://wang-chaojun.github.io/papers/CorePeriphery_Wang.pdf</loc></url>
   <url><loc>https://wang-chaojun.github.io/papers/DuffieWang.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/papers/MultiDealer.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/papers/OTC_EX.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/papers/OTC_EX_220331.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/papers/OTC_EX_220706.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/papers/OTC_EX_221027.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/papers/OTC_EX_230906.pdf</loc></url>
   <url><loc>https://wang-chaojun.github.io/papers/OTC_EX_IA.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/papers/SizePenalty.pdf</loc></url>
   <url><loc>https://wang-chaojun.github.io/papers/SizePenalty_2023_v15.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/papers/Size_Penalty.pdf</loc></url>
-  <url><loc>https://wang-chaojun.github.io/papers/chasing_adverse_selection.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/papers/MultiDealer.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_Kuong.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_AoyagiYuki.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_AllenWittwer2.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_Mollner.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_LeeMartinTownsend.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_AnandMuravyev.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_Wu.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_KhetanLiNeamtuIshita.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_ChangZhang.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_KanielOppChen.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_AllenWittwer.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_ErnstSokobinSpatt.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_BrunnermeierPayne.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_ChoiHanShinYoon.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_CapponiJiaWang.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_An.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_Xu.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_BenosHuangMenkveldVasios.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_MaXiaoZeng.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_HautschScheuchVoigt.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_Pagnotta.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_FarleyKelleyPuckett.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_ChincoFos.pdf</loc></url>
+  <url><loc>https://wang-chaojun.github.io/discussions/Wang_Liu.pdf</loc></url>
 </urlset>
