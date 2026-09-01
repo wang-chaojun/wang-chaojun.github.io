@@ -1,0 +1,157 @@
+
+/* Global Layout Narrow container */
+@media (min-width: 1200px) {
+  .container {
+    width: 1000px;
+  }
+}
+
+a {
+	color: #a41d21;
+}
+
+/* Header*/
+.logo {
+	height:60px;
+}
+.header {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: 2px solid #a41d21;
+}
+/* Main Area */
+
+.photo {
+	height: 349px;
+	padding-bottom: 10px;
+	padding-left: 30px
+}
+
+.photo-small {
+	height: 250px;
+	float: right;
+	margin-left: 20px;
+}
+
+.jumbotron ul {
+	list-style: none;
+	padding-left: 0px;
+}
+
+.jumbotron p {
+	font-size: 16px
+}
+
+span.name {
+	font-size: 50px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+	margin-bottom: -17px;
+	margin-top: 0px;
+	position: absolute;
+	bottom: 0px;
+
+}
+
+.blurb p {
+	font-size: 15px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+	/*text-align: justify;*/
+}
+
+div.div-logo, div.div-name {
+	vertical-align: bottom;
+    height: 60px;
+}
+
+.jumbotron h3 {
+	margin-top: 20px;
+}
+
+.jumbotron {
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.affiliation {
+	padding-left: 7px;
+	font-size: 16px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+}
+
+/* Papers Area */
+
+
+.papers h3, .contact-info h3 {
+	font-size: 26px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+}
+
+.papers .title {
+	font-size: 16px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+	display: inline;
+	padding-right: 20px
+}
+
+.papers .abstract {
+	/*font-size: 13px;*/
+	text-align: justify;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+
+}
+
+.papers .co-authors {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	margin-bottom: 7px;
+}
+
+.papers .one-liner {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	margin: 0 0 7px 0;
+}
+
+.papers .conferences {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	margin-bottom: 7px;
+}
+
+.papers .pdf {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	padding-right: 20px;
+	padding-top: 10px;
+}
+
+
+.papers ul{
+	list-style: none;
+	padding-left: 0px;
+}
+
+
+.working-paper {
+	padding-bottom: 25px;
+}
+
+.jmp {
+	margin-top: 25px;
+	font-size: 16px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+}
+
+.contact-info {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+}
+

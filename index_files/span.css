@@ -1,0 +1,35 @@
+details {
+  user-select: none;
+}
+
+details>summary span.icon {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s;
+  margin-left: auto;
+}
+
+details[open] summary span.icon {
+  transform: rotate(180deg);
+}
+
+summary {
+	display: inline-block;
+	width: max-content;
+	cursor: default !important;
+}
+
+summary .summary-label {
+	display: inline-block;
+	cursor: pointer !important;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Content that sits next to "Abstract" but must not toggle the details. */
+summary .summary-extras {
+  cursor: auto;
+  user-select: text;
+}
