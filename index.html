@@ -13,6 +13,19 @@
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Expires" content="0">
+	<script>
+		// Force a fresh request for this page, then restore the clean URL.
+		(function () {
+			var url = new URL(window.location.href);
+			if (!url.searchParams.has('_fresh')) {
+				url.searchParams.set('_fresh', Date.now().toString());
+				window.location.replace(url.toString());
+				return;
+			}
+			url.searchParams.delete('_fresh');
+			window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+		})();
+	</script>
 	<link rel="stylesheet" type="text/css" href="./index_files/bootstrap_AK.css">
 	<link rel="stylesheet" type="text/css" href="./index_files/main.css?v=20260706">
 	<!-- <link rel="icon" href="./index_files/favicon.ico"> -->
