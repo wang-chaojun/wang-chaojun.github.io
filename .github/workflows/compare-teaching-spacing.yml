@@ -1,0 +1,52 @@
+name: Compare Teaching Spacing
+
+on:
+  push:
+    paths:
+      - '.github/workflows/compare-teaching-spacing.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Inspect current and historical spacing
+        run: |
+          python -m pip install python-docx
+          mkdir -p .cv-qa
+          python - <<'PY'
+          from docx import Document
+          import subprocess, os
+          refs = {
+              "current": "HEAD",
+              "before_holden": "f5d44889ed9c2b6852f4f056a10f5394e5edd72f",
+              "holden_update": "6adbee7f29fc9b1e38a8fcd74a2df74fe5b55fe9",
+          }
+          def pts(x): return None if x is None else x.pt
+          out=[]
+          for label,ref in refs.items():
+              path=f"/tmp/{label}.docx"
+              with open(path,"wb") as fh:
+                  subprocess.run(["git","show",f"{ref}:Wang_CV.docx"],stdout=fh,check=True)
+              doc=Document(path)
+              out.append(f"## {label}")
+              for i,p in enumerate(doc.paragraphs):
+                  if 134 <= i <= 148:
+                      pf=p.paragraph_format
+                      out.append(f"{i}: {p.text!r}")
+                      out.append(f"   before={pts(pf.space_before)} after={pts(pf.space_after)} line={pf.line_spacing!r}")
+              out.append("")
+          open(".cv-qa/teaching-spacing.txt","w",encoding="utf-8").write("\n".join(out))
+          PY
+      - name: Commit diagnostic
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .cv-qa/teaching-spacing.txt
+          git commit -m "Add temporary teaching spacing diagnostic"
+          git push
