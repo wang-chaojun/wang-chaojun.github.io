@@ -1,0 +1,39 @@
+name: Inspect China Walls Status
+
+on:
+  push:
+    paths:
+      - '.github/workflows/inspect-china-walls.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract China Walls context
+        run: |
+          python -m pip install python-docx
+          mkdir -p .cv-qa
+          python - <<'PY'
+          from docx import Document
+          doc=Document("Wang_CV.docx")
+          out=[]
+          for i,p in enumerate(doc.paragraphs):
+              if "China Walls" in p.text or (out and len(out) < 8):
+                  if "China Walls" in p.text:
+                      out=[f"{i}: {p.text}"]
+                  elif out:
+                      out.append(f"{i}: {p.text}")
+                      if len(out)>=8: break
+          open(".cv-qa/china-walls.txt","w",encoding="utf-8").write("\n".join(out))
+          PY
+      - name: Commit diagnostic
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .cv-qa/china-walls.txt
+          git commit -m "Add temporary China Walls diagnostic"
+          git push
