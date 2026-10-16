@@ -1,0 +1,62 @@
+name: Update CV Month to October
+
+on:
+  push:
+    paths:
+      - '.github/workflows/update-cv-october.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libreoffice poppler-utils
+          python -m pip install python-docx
+      - name: Update CV month and website link
+        run: |
+          python - <<'PY'
+          from docx import Document
+          path="Wang_CV.docx"
+          doc=Document(path)
+          changed=False
+          for p in doc.paragraphs:
+              if "Updated September, 2026" in p.text:
+                  for r in p.runs:
+                      if "September" in r.text:
+                          r.text=r.text.replace("September","October")
+                          changed=True
+          if not changed:
+              raise SystemExit("Could not find September update date in DOCX")
+          doc.save(path)
+          p="index.html"
+          s=open(p,encoding="utf-8").read()
+          s2=s.replace("Wang_CV.pdf?v=202609","Wang_CV.pdf?v=202610").replace("(September 2026)","(October 2026)")
+          if s2==s:
+              raise SystemExit("Could not update index CV month/token")
+          open(p,"w",encoding="utf-8").write(s2)
+          PY
+      - name: Render and verify
+        run: |
+          mkdir -p /tmp/cv-render
+          libreoffice --headless --convert-to pdf --outdir /tmp/cv-render Wang_CV.docx
+          test -s /tmp/cv-render/Wang_CV.pdf
+          pages=$(pdfinfo /tmp/cv-render/Wang_CV.pdf | awk '/^Pages:/ {print $2}')
+          echo "Rendered pages: $pages"
+          test "$pages" = "4"
+          pdftotext -layout /tmp/cv-render/Wang_CV.pdf /tmp/cv.txt
+          grep -q "Updated October, 2026" /tmp/cv.txt
+          grep -q "Holden Conference" /tmp/cv.txt
+          cp /tmp/cv-render/Wang_CV.pdf Wang_CV.pdf
+      - name: Commit update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Wang_CV.docx Wang_CV.pdf index.html
+          git commit -m "Update CV date to October 2026"
+          git push
