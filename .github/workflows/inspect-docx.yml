@@ -1,0 +1,50 @@
+name: Inspect CV DOCX Layout
+
+on:
+  push:
+    paths:
+      - '.github/workflows/inspect-docx.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect paragraph spacing
+        run: |
+          python -m pip install python-docx
+          python - <<'PY'
+          from docx import Document
+          from docx.shared import Pt
+          doc=Document("Wang_CV.docx")
+          targets=[
+              "Committee Work and Other Service",
+              "Invited Discussions",
+              "TEACHING AND ADVISING",
+              "Ph.D. Students",
+              "Teaching",
+              "FNCE 100: Corporate Finance (Wharton)",
+              "ENGR 60: Engineering Economics (Stanford University)",
+              "Session leader for STATS 60: Introduction to Statistical Methods (Stanford University)",
+              "Oral examiner in mathematics in the preparatory program at Lycée Michelet (Paris, France)",
+          ]
+          with open(".cv-qa/docx-layout.txt","w",encoding="utf-8") as f:
+              for i,p in enumerate(doc.paragraphs):
+                  txt=" ".join(p.text.split())
+                  if txt in targets:
+                      pf=p.paragraph_format
+                      def pts(x): return None if x is None else x.pt
+                      f.write(f"{i}\t{txt}\n")
+                      f.write(f"  style={p.style.name!r} before={pts(pf.space_before)} after={pts(pf.space_after)} line={pf.line_spacing!r} keep_next={pf.keep_with_next} keep_together={pf.keep_together} page_break_before={pf.page_break_before}\n")
+                      f.write(f"  pPr={p._p.pPr.xml if p._p.pPr is not None else ''}\n")
+          PY
+      - name: Commit diagnostics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .cv-qa/docx-layout.txt
+          git commit -m "Add temporary DOCX layout diagnostics"
+          git push
