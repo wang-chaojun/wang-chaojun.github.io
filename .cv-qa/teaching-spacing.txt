@@ -1,0 +1,77 @@
+## current
+134: 'Conference on Financial Decisions and Asset Markets, Rodney White Center, 2018'
+   before=None after=0.0 line=1.0
+135: 'Mid-Atlantic Research Conference, 2018'
+   before=None after=0.0 line=1.0
+136: 'European Finance Association Doctoral Tutorial, 2016'
+   before=None after=0.0 line=1.0
+137: ''
+   before=None after=0.0 line=63500
+138: 'Teaching and Advising'
+   before=None after=0.0 line=1.0
+139: 'Ph.D. Students'
+   before=0.0 after=0.0 line=1.0
+140: 'Ruslan Svershkov, Warwick Business School, Committee member'
+   before=5.0 after=0.0 line=1.0
+141: 'Teaching'
+   before=None after=0.0 line=1.0
+142: 'FNCE 100: Corporate Finance (Wharton)'
+   before=0.0 after=0.0 line=1.0
+143: 'ENGR 60: Engineering Economics (Stanford University)'
+   before=None after=0.0 line=1.0
+144: 'Session leader for STATS 60: Introduction to Statistical Methods (Stanford University)'
+   before=None after=0.0 line=1.0
+145: 'Oral examiner in mathematics in the preparatory program at Lycée Michelet (Paris, France)'
+   before=None after=0.0 line=1.0
+
+## before_holden
+134: 'Conference on Financial Decisions and Asset Markets, Rodney White Center, 2018'
+   before=None after=0.0 line=1.0
+135: 'Mid-Atlantic Research Conference, 2018'
+   before=None after=0.0 line=1.0
+136: 'European Finance Association Doctoral Tutorial, 2016'
+   before=None after=0.0 line=1.0
+137: ''
+   before=None after=0.0 line=63500
+138: 'Teaching and Advising'
+   before=None after=0.0 line=1.0
+139: 'Ph.D. Students'
+   before=0.0 after=0.0 line=1.0
+140: 'Ruslan Svershkov, Warwick Business School, Committee member'
+   before=5.0 after=0.0 line=1.0
+141: 'Teaching'
+   before=None after=0.0 line=1.0
+142: 'FNCE 100: Corporate Finance (Wharton)'
+   before=0.0 after=0.0 line=1.0
+143: 'ENGR 60: Engineering Economics (Stanford University)'
+   before=None after=0.0 line=1.0
+144: 'Session leader for STATS 60: Introduction to Statistical Methods (Stanford University)'
+   before=None after=0.0 line=1.0
+145: 'Oral examiner in mathematics in the preparatory program at Lycée Michelet (Paris, France)'
+   before=None after=0.0 line=1.0
+
+## holden_update
+134: 'Conference on Financial Decisions and Asset Markets, Rodney White Center, 2018'
+   before=None after=0.0 line=1.0
+135: 'Mid-Atlantic Research Conference, 2018'
+   before=None after=0.0 line=1.0
+136: 'European Finance Association Doctoral Tutorial, 2016'
+   before=None after=0.0 line=1.0
+137: ''
+   before=None after=0.0 line=63500
+138: 'Teaching and Advising'
+   before=None after=0.0 line=1.0
+139: 'Ph.D. Students'
+   before=0.0 after=0.0 line=1.0
+140: 'Ruslan Svershkov, Warwick Business School, Committee member'
+   before=5.0 after=0.0 line=1.0
+141: 'Teaching'
+   before=None after=0.0 line=1.0
+142: 'FNCE 100: Corporate Finance (Wharton)'
+   before=0.0 after=0.0 line=1.0
+143: 'ENGR 60: Engineering Economics (Stanford University)'
+   before=None after=0.0 line=1.0
+144: 'Session leader for STATS 60: Introduction to Statistical Methods (Stanford University)'
+   before=None after=0.0 line=1.0
+145: 'Oral examiner in mathematics in the preparatory program at Lycée Michelet (Paris, France)'
+   before=None after=0.0 line=1.0
