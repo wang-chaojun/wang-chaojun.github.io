@@ -3,7 +3,6 @@ Behavior, Journal of Economic Theory, Journal of Finance, Journal of Financial E
 Financial and Quantitative Analysis, Journal of Financial Markets, Journal of Monetary Economics,
 Management Science, Review of Asset Pricing Studies, Review of Corporate Finance Studies, Review of
 Economic Studies, Review of Financial Studies, Theoretical Economics
-
 Committee Work and Other Service
 Program Committee, WFA
 Program Committee, SFS Calvacade North America
@@ -14,7 +13,6 @@ Program Committee, Cambridge Corporate Finance Theory symposium
 Program Committee, Chinese Finance Scholar Forum
 Wharton Junior Faculty Recruiting Committee
 Co-organizer, Wharton Micro Finance Seminar
-
 Invited Discussions
 WFA, 2026
 MFA, 2026
@@ -47,4 +45,6 @@ Ruslan Svershkov, Warwick Business School, Committee member
 Teaching
 FNCE 100: Corporate Finance (Wharton)
 ENGR 60: Engineering Economics (Stanford University)
+Session leader for STATS 60: Introduction to Statistical Methods (Stanford University)
+Oral examiner in mathematics in the preparatory program at Lycée Michelet (Paris, France)
 
