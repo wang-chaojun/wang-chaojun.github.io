@@ -1,0 +1,57 @@
+name: Restore CV Spacing
+
+on:
+  push:
+    paths:
+      - '.github/workflows/restore-cv-spacing.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libreoffice poppler-utils
+          python -m pip install python-docx
+      - name: Restore pre-squeeze DOCX and update month
+        run: |
+          git show 69a4e0b67b7b4eb9530e58ca023eeebc91a9a079:Wang_CV.docx > Wang_CV.docx
+          python - <<'PY'
+          from docx import Document
+          path="Wang_CV.docx"
+          doc=Document(path)
+          changed=False
+          for p in doc.paragraphs:
+              if "Updated September, 2026" in p.text:
+                  for r in p.runs:
+                      if "September" in r.text:
+                          r.text=r.text.replace("September","October")
+                          changed=True
+          if not changed:
+              raise SystemExit("Could not find September update date")
+          doc.save(path)
+          PY
+      - name: Render without page-count forcing
+        run: |
+          mkdir -p /tmp/cv-render
+          libreoffice --headless --convert-to pdf --outdir /tmp/cv-render Wang_CV.docx
+          test -s /tmp/cv-render/Wang_CV.pdf
+          pdfinfo /tmp/cv-render/Wang_CV.pdf
+          pdftotext -layout /tmp/cv-render/Wang_CV.pdf /tmp/cv.txt
+          grep -q "Updated October, 2026" /tmp/cv.txt
+          grep -q "Holden Conference" /tmp/cv.txt
+          cp /tmp/cv-render/Wang_CV.pdf Wang_CV.pdf
+      - name: Commit restored spacing
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Wang_CV.docx Wang_CV.pdf
+          git commit -m "Restore CV spacing and allow natural page count"
+          git push
