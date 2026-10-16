@@ -1,0 +1,52 @@
+name: Compare Older Teaching Spacing
+
+on:
+  push:
+    paths:
+      - '.github/workflows/compare-older-teaching.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Compare older Teaching block
+        run: |
+          python -m pip install python-docx
+          mkdir -p .cv-qa
+          python - <<'PY'
+          from docx import Document
+          import subprocess
+          refs = {
+              "before_jfe_update": "e05a51d8e059342771bb4febf2382f6214bd6d07",
+              "pre_sep_squeeze": "d81a5896fcf9bfec457be21698f4c7bd0b0a172d",
+              "current": "HEAD",
+          }
+          def pts(x): return None if x is None else x.pt
+          out=[]
+          for label,ref in refs.items():
+              path=f"/tmp/{label}.docx"
+              with open(path,"wb") as fh:
+                  subprocess.run(["git","show",f"{ref}:Wang_CV.docx"],stdout=fh,check=True)
+              doc=Document(path)
+              ps=doc.paragraphs
+              h=next(i for i,p in enumerate(ps) if p.text.strip().lower()=="teaching and advising")
+              out.append(f"## {label}")
+              for i in range(h-2,min(len(ps),h+10)):
+                  p=ps[i]; pf=p.paragraph_format
+                  out.append(f"{i}: {p.text!r} | before={pts(pf.space_before)} after={pts(pf.space_after)} line={pf.line_spacing!r}")
+              out.append("")
+          open(".cv-qa/older-teaching.txt","w",encoding="utf-8").write("\n".join(out))
+          PY
+      - name: Commit diagnostic
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .cv-qa/older-teaching.txt
+          git commit -m "Add temporary older Teaching diagnostic"
+          git push
