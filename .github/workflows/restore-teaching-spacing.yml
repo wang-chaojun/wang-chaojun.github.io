@@ -1,0 +1,54 @@
+name: Restore Teaching Spacing
+
+on:
+  push:
+    paths:
+      - '.github/workflows/restore-teaching-spacing.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libreoffice poppler-utils
+          python -m pip install python-docx
+      - name: Restore Teaching and Advising spacing
+        run: |
+          python - <<'PY'
+          from docx import Document
+          from docx.shared import Pt
+          doc=Document("Wang_CV.docx")
+          ps=doc.paragraphs
+          idx=next(i for i,p in enumerate(ps) if p.text.strip().lower()=="teaching and advising")
+          if idx == 0 or ps[idx-1].text.strip():
+              raise SystemExit("Expected blank paragraph before Teaching and Advising")
+          ps[idx-1].paragraph_format.line_spacing = 1.0
+          phd=next(p for p in ps if p.text.strip()=="Ph.D. Students")
+          phd.paragraph_format.space_before = Pt(5)
+          fnce=next(p for p in ps if p.text.strip()=="FNCE 100: Corporate Finance (Wharton)")
+          fnce.paragraph_format.space_before = Pt(5)
+          doc.save("Wang_CV.docx")
+          PY
+      - name: Render and verify without page-count target
+        run: |
+          mkdir -p /tmp/cv-render
+          libreoffice --headless --convert-to pdf --outdir /tmp/cv-render Wang_CV.docx
+          test -s /tmp/cv-render/Wang_CV.pdf
+          pdfinfo /tmp/cv-render/Wang_CV.pdf
+          pdftotext -layout /tmp/cv-render/Wang_CV.pdf /tmp/cv.txt
+          grep -q "Updated October, 2026" /tmp/cv.txt
+          grep -q "Holden Conference" /tmp/cv.txt
+          cp /tmp/cv-render/Wang_CV.pdf Wang_CV.pdf
+      - name: Commit restored spacing
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Wang_CV.docx Wang_CV.pdf
+          git commit -m "Restore Teaching and Advising spacing"
+          git push
