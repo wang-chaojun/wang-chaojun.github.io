@@ -155,3 +155,24 @@ div.div-logo, div.div-name {
 	font-weight: 400;
 }
 
+
+
+/* Bootstrap 5 compatibility: preserve the Bootstrap 3-era visual treatment. */
+.jumbotron {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-bottom: 30px;
+  background-color: #eee;
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+
+.row {
+  --bs-gutter-x: 30px;
+}
