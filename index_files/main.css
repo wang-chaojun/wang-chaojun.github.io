@@ -158,6 +158,36 @@ div.div-logo, div.div-name {
 
 
 /* Bootstrap 5 compatibility: preserve the Bootstrap 3-era visual treatment. */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333333;
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.row {
+  --bs-gutter-x: 30px;
+}
+
+.div-name {
+  position: relative;
+}
+
 .jumbotron {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -173,6 +203,8 @@ div.div-logo, div.div-name {
   }
 }
 
-.row {
-  --bs-gutter-x: 30px;
+.papers h3,
+.contact-info h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
