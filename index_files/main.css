@@ -701,3 +701,84 @@ span.name {
     margin-bottom: 10px;
   }
 }
+
+
+/* Verified profile alignment override.
+   Keep the legacy profile columns but allow the portrait to grow when text wraps. */
+@media (min-width: 576px) {
+  .legacy-profile-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: stretch;
+  }
+
+  .legacy-profile-photo,
+  .legacy-profile-copy {
+    float: none;
+    width: auto;
+    min-width: 0;
+  }
+
+  .legacy-profile-photo {
+    display: block;
+    position: relative;
+    min-height: 242px;
+  }
+
+  .legacy-profile-photo > img {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    display: block;
+    width: 203.8373px;
+    max-width: calc(100% - 30px);
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .legacy-profile-copy {
+    display: flex;
+    flex-direction: column;
+    min-height: 242px;
+  }
+
+  .legacy-profile-copy .navigation {
+    margin-top: auto;
+    margin-bottom: 0;
+  }
+
+  .legacy-profile-photo-small {
+    display: none;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .legacy-profile-photo,
+  .legacy-profile-copy {
+    width: auto;
+  }
+
+  .legacy-profile-photo {
+    min-height: 178px;
+  }
+
+  .legacy-profile-photo > img {
+    width: 150px;
+  }
+
+  .legacy-profile-copy {
+    min-height: 178px;
+  }
+
+  .legacy-profile-copy p {
+    font-size: 12px;
+    line-height: 1.2;
+    margin-bottom: 3px;
+  }
+
+  .legacy-profile-copy .navigation {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+}
