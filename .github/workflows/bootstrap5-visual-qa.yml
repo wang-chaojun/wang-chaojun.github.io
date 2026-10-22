@@ -1,0 +1,87 @@
+name: Bootstrap 5 Visual QA
+
+on:
+  push:
+    branches:
+      - bootstrap-5-3-8-migration
+    paths:
+      - 'index.html'
+      - 'index_files/main.css'
+      - '.github/workflows/bootstrap5-visual-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install browser tooling
+        run: |
+          python -m pip install playwright pillow
+          python -m playwright install chromium
+      - name: Prepare old site
+        run: |
+          mkdir -p /tmp/old-site
+          git archive b4e029d3bc08841278c019c350b60888f492b379 | tar -x -C /tmp/old-site
+      - name: Render old and new at desktop and mobile widths
+        run: |
+          (cd /tmp/old-site && python -m http.server 8001 >/tmp/old-server.log 2>&1 &)
+          (python -m http.server 8002 >/tmp/new-server.log 2>&1 &)
+          sleep 2
+          cat > /tmp/render.py <<'PY'
+          from playwright.sync_api import sync_playwright
+          from PIL import Image, ImageChops, ImageStat
+          import os, json
+
+          os.makedirs(".qa-bootstrap", exist_ok=True)
+          cases = {
+              "desktop": {"width": 1440, "height": 1000},
+              "mobile": {"width": 390, "height": 844},
+          }
+
+          results = {}
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              for name, vp in cases.items():
+                  for version, port in [("old",8001),("new",8002)]:
+                      page = browser.new_page(viewport=vp)
+                      page.goto(f"http://127.0.0.1:{port}/index.html", wait_until="networkidle")
+                      page.screenshot(path=f".qa-bootstrap/{version}-{name}.png", full_page=True)
+                      results[f"{version}-{name}"] = {
+                          "scrollWidth": page.evaluate("document.documentElement.scrollWidth"),
+                          "clientWidth": page.evaluate("document.documentElement.clientWidth"),
+                          "scrollHeight": page.evaluate("document.documentElement.scrollHeight"),
+                          "bodyFont": page.evaluate("getComputedStyle(document.body).fontFamily"),
+                          "bodyFontSize": page.evaluate("getComputedStyle(document.body).fontSize"),
+                          "h3Count": page.locator("h3").count(),
+                      }
+                      page.close()
+              browser.close()
+
+          for name in cases:
+              a=Image.open(f".qa-bootstrap/old-{name}.png").convert("RGB")
+              b=Image.open(f".qa-bootstrap/new-{name}.png").convert("RGB")
+              common=(min(a.width,b.width),min(a.height,b.height))
+              aa=a.crop((0,0,*common)); bb=b.crop((0,0,*common))
+              d=ImageChops.difference(aa,bb)
+              stat=ImageStat.Stat(d)
+              results[f"diff-{name}"]={
+                  "oldSize":a.size,"newSize":b.size,
+                  "meanAbsRGB":[round(x,3) for x in stat.mean]
+              }
+          with open(".qa-bootstrap/metrics.json","w") as f:
+              json.dump(results,f,indent=2)
+          PY
+          python /tmp/render.py
+          for f in .qa-bootstrap/*.png; do base64 -w0 "$f" > "$f.b64"; rm "$f"; done
+      - name: Commit QA artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .qa-bootstrap
+          git commit -m "Add temporary Bootstrap 5 visual QA" || exit 0
+          git push
