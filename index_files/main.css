@@ -347,3 +347,53 @@ span.name {
     max-width: 48%;
   }
 }
+
+
+/* Keep the intro aligned through browser zoom; stack only on small-screen mobile. */
+@media (min-width: 576px) {
+  .intro-row {
+    display: flex;
+    align-items: stretch !important;
+    min-height: 242px;
+  }
+
+  .intro-photo-col {
+    display: flex !important;
+    align-items: stretch;
+  }
+
+  .intro-photo-col > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: cover;
+  }
+
+  .intro-copy {
+    display: flex;
+    flex-direction: column;
+    min-height: 242px;
+  }
+
+  .intro-copy .cv-navigation {
+    margin-top: auto;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .intro-copy {
+    display: block;
+    min-height: 0;
+  }
+
+  .photo-small {
+    float: right;
+    width: auto;
+    max-width: 48%;
+    height: auto;
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+}
