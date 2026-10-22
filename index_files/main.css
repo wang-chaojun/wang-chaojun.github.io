@@ -1,9 +1,8 @@
 
-/* Global layout: keep one desktop container width across Bootstrap breakpoints. */
-@media (min-width: 992px) {
+/* Global Layout Narrow container */
+@media (min-width: 1200px) {
   .container {
-    width: 100%;
-    max-width: 1000px;
+    width: 1000px;
   }
 }
 
@@ -524,11 +523,6 @@ span.name {
     min-height: 242px;
   }
 
-  .intro-copy p {
-    margin-bottom: 6px;
-    line-height: 1.32;
-  }
-
   .intro-copy .cv-navigation {
     margin-top: auto;
     margin-bottom: 0;
@@ -605,5 +599,14 @@ span.name {
   .intro-copy .cv-navigation {
     font-size: 12px;
     line-height: 1.2;
+  }
+}
+
+
+/* Keep bio vertical spacing identical across desktop zoom breakpoints. */
+@media (min-width: 768px) {
+  .intro-copy p {
+    margin-bottom: 10px;
+    line-height: 1.42857143;
   }
 }
