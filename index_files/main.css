@@ -546,30 +546,34 @@ span.name {
     width: auto !important;
     max-width: none !important;
     min-width: 0;
-    height: var(--portrait-height);
     min-height: var(--portrait-height);
-    align-self: start !important;
   }
 
   .intro-photo-col {
-    display: flex !important;
-    align-items: flex-start !important;
-    justify-content: flex-start;
+    position: relative;
+    display: block !important;
+    align-self: stretch !important;
   }
 
   .intro-photo-col > img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
     display: block;
-    width: var(--portrait-width) !important;
-    height: var(--portrait-height) !important;
-    max-width: 100%;
+    width: auto !important;
+    height: 100% !important;
+    max-width: calc(100% - 30px);
     max-height: none;
-    object-fit: cover;
+    object-fit: contain;
     margin: 0 !important;
   }
 
   .intro-copy {
     display: flex !important;
     flex-direction: column;
+    height: auto;
+    align-self: stretch !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
   }
