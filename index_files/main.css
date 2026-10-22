@@ -614,3 +614,90 @@ span.name {
     line-height: 1.42857143;
   }
 }
+
+
+/* Profile only: reproduce the Bootstrap 3 float layout while the rest of the site stays on Bootstrap 5. */
+.legacy-profile-row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.legacy-profile-row::before,
+.legacy-profile-row::after {
+  display: table;
+  content: " ";
+}
+
+.legacy-profile-row::after {
+  clear: both;
+}
+
+.legacy-profile-photo,
+.legacy-profile-copy {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.legacy-profile-photo {
+  display: none;
+}
+
+.legacy-profile-photo-small {
+  display: block;
+}
+
+.legacy-profile-copy .navigation {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .legacy-profile-photo,
+  .legacy-profile-copy {
+    float: left;
+  }
+
+  .legacy-profile-photo {
+    display: block;
+    width: 33.33333333%;
+  }
+
+  .legacy-profile-copy {
+    width: 66.66666667%;
+  }
+
+  .legacy-profile-photo > img {
+    display: block;
+    width: auto;
+    height: 242px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .legacy-profile-photo-small {
+    display: none;
+  }
+
+  .legacy-profile-copy p {
+    margin: 0 0 10px;
+    font-size: 15px;
+    line-height: 1.42857143;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .legacy-profile-copy {
+    width: 100%;
+  }
+
+  .legacy-profile-photo-small {
+    float: right;
+    width: auto;
+    height: 250px;
+    max-width: 48%;
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+}
