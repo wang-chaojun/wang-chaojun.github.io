@@ -438,3 +438,37 @@ span.name {
     transform: translateY(23.2px);
   }
 }
+
+
+/* Make the text column define intro height; keep the photo bottom aligned to it. */
+@media (min-width: 576px) {
+  .intro-row {
+    align-items: stretch !important;
+  }
+
+  .intro-photo-col {
+    position: relative;
+    min-height: 0;
+    align-self: stretch;
+  }
+
+  .intro-photo-col > img {
+    position: absolute;
+    left: 15px;
+    bottom: 0;
+    width: auto;
+    max-width: calc(100% - 30px);
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    object-position: left bottom;
+  }
+
+  .intro-copy {
+    min-height: 242px;
+  }
+
+  .intro-copy .cv-navigation {
+    margin-top: auto;
+  }
+}
