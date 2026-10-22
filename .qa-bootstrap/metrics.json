@@ -10,7 +10,7 @@
   "new-desktop": {
     "scrollWidth": 1440,
     "clientWidth": 1440,
-    "scrollHeight": 3004,
+    "scrollHeight": 2918,
     "bodyFont": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
     "bodyFontSize": "14px",
     "h3Count": 4
@@ -26,7 +26,7 @@
   "new-mobile": {
     "scrollWidth": 515,
     "clientWidth": 390,
-    "scrollHeight": 4591,
+    "scrollHeight": 4471,
     "bodyFont": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
     "bodyFontSize": "14px",
     "h3Count": 4
@@ -38,12 +38,12 @@
     ],
     "newSize": [
       1440,
-      3004
+      2918
     ],
     "meanAbsRGB": [
-      8.038,
-      10.063,
-      10.044
+      5.337,
+      6.703,
+      6.696
     ]
   },
   "diff-mobile": {
@@ -53,12 +53,12 @@
     ],
     "newSize": [
       515,
-      4591
+      4471
     ],
     "meanAbsRGB": [
-      13.661,
-      17.636,
-      17.639
+      13.598,
+      17.142,
+      17.133
     ]
   }
 }
