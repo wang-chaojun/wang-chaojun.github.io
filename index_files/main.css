@@ -397,3 +397,37 @@ span.name {
     margin-bottom: 10px;
   }
 }
+
+
+/* Keep the header stable at high zoom before the mobile header takes over. */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .header-row {
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) minmax(300px, 2fr);
+    align-items: end !important;
+    min-height: 60px;
+  }
+
+  .div-logo,
+  .div-name {
+    width: auto;
+    max-width: none;
+    min-height: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .div-logo img {
+    width: min(203.8373px, 100%);
+    height: auto;
+    transform: none;
+  }
+
+  span.name {
+    white-space: nowrap;
+    font-size: clamp(38px, 6.4vw, 46px);
+    line-height: 1;
+  }
+}
