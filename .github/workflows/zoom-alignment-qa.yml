@@ -1,0 +1,60 @@
+name: Zoom Alignment QA
+
+on:
+  push:
+    branches:
+      - fix-zoom-175-alignment
+    paths:
+      - 'index.html'
+      - 'index_files/main.css'
+      - '.github/workflows/zoom-alignment-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install browser tooling
+        run: |
+          python -m pip install playwright
+          python -m playwright install chromium
+      - name: Render zoom-equivalent widths
+        run: |
+          python -m http.server 8000 >/tmp/server.log 2>&1 &
+          sleep 2
+          cat > /tmp/render.py <<'PY'
+          from playwright.sync_api import sync_playwright
+          import os,json
+          os.makedirs(".qa-zoom",exist_ok=True)
+          cases={"1440":1440,"1152":1152,"960":960,"820":820,"720":720,"640":640,"576":576,"560":560,"390":390}
+          out={}
+          with sync_playwright() as p:
+              b=p.chromium.launch()
+              for name,w in cases.items():
+                  page=b.new_page(viewport={"width":w,"height":900})
+                  page.goto("http://127.0.0.1:8000/index.html",wait_until="networkidle")
+                  page.screenshot(path=f".qa-zoom/{name}.png",full_page=True)
+                  out[name]=page.evaluate("""() => {
+                    const rect=s=>{const e=document.querySelector(s); if(!e) return null; const r=e.getBoundingClientRect(); return {top:r.top,bottom:r.bottom,left:r.left,right:r.right,width:r.width,height:r.height}};
+                    const body=document.documentElement;
+                    return {scrollWidth:body.scrollWidth,clientWidth:body.clientWidth,
+                      logo:rect('.div-logo img'), name:rect('span.name'),
+                      photo:rect('.intro-photo-col > img'), cv:rect('.cv-navigation'),
+                      mobilePhoto:rect('.photo-small')};
+                  }""")
+                  page.close()
+              b.close()
+          open(".qa-zoom/metrics.json","w").write(json.dumps(out,indent=2))
+          PY
+          python /tmp/render.py
+          for f in .qa-zoom/*.png; do base64 -w0 "$f" > "$f.b64"; rm "$f"; done
+      - name: Commit QA
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .qa-zoom
+          git commit -m "Add temporary zoom alignment QA" || exit 0
+          git push
