@@ -1,0 +1,58 @@
+name: Intro Height QA
+
+on:
+  push:
+    branches:
+      - fix-intro-height-source
+    paths:
+      - 'index_files/main.css'
+      - '.github/workflows/intro-height-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Chromium
+        run: |
+          python -m pip install playwright
+          python -m playwright install chromium
+      - name: Check alignment
+        run: |
+          python -m http.server 8000 >/tmp/server.log 2>&1 &
+          sleep 2
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          import json, os
+          os.makedirs(".qa-intro", exist_ok=True)
+          widths=[1440,1152,960,873,820,720,640,576]
+          out={}
+          with sync_playwright() as p:
+              b=p.chromium.launch()
+              for w in widths:
+                  page=b.new_page(viewport={"width":w,"height":900})
+                  page.goto("http://127.0.0.1:8000/index.html",wait_until="networkidle")
+                  out[str(w)]=page.evaluate("""() => {
+                    const r=s=>document.querySelector(s).getBoundingClientRect();
+                    const p=r('.intro-photo-col > img'), c=r('.cv-navigation');
+                    return {photoBottom:p.bottom,cvBottom:c.bottom,delta:Math.abs(p.bottom-c.bottom),
+                            photoHeight:p.height,photoWidth:p.width,
+                            scrollWidth:document.documentElement.scrollWidth,
+                            clientWidth:document.documentElement.clientWidth};
+                  }""")
+                  page.screenshot(path=f".qa-intro/{w}.png",full_page=True)
+                  page.close()
+              b.close()
+          open(".qa-intro/metrics.json","w").write(json.dumps(out,indent=2))
+          PY
+          for f in .qa-intro/*.png; do base64 -w0 "$f" > "$f.b64"; rm "$f"; done
+      - name: Commit QA
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .qa-intro
+          git commit -m "Add temporary intro alignment QA" || exit 0
+          git push
