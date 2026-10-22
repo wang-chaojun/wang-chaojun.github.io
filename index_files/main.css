@@ -438,3 +438,63 @@ span.name {
     transform: translateY(23.2px);
   }
 }
+
+
+/* Match the main portrait width to the Wharton logo while preserving bottom alignment. */
+@media (min-width: 768px) {
+  .intro-row {
+    align-items: stretch !important;
+  }
+
+  .intro-photo-col {
+    display: flex !important;
+    align-items: flex-end;
+  }
+
+  .intro-photo-col > img {
+    width: 203.8373px;
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+    object-fit: contain;
+  }
+
+  .intro-copy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .intro-copy .cv-navigation {
+    margin-top: auto;
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .intro-row {
+    align-items: stretch !important;
+  }
+
+  .intro-photo-col {
+    display: flex !important;
+    align-items: flex-end;
+  }
+
+  .intro-photo-col > img {
+    width: 150px;
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+    object-fit: contain;
+  }
+
+  .intro-copy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .intro-copy .cv-navigation {
+    margin-top: auto;
+    margin-bottom: 0;
+  }
+}
