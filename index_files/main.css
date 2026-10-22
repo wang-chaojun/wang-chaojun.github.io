@@ -306,3 +306,44 @@ span.name {
     height: auto;
   }
 }
+
+
+/* Final alignment refinements. */
+.div-logo img {
+  transform: translateY(10px);
+}
+
+@media (min-width: 992px) {
+  .intro-row {
+    min-height: 242px;
+  }
+
+  .intro-copy {
+    min-height: 242px;
+  }
+
+  .intro-copy .cv-navigation {
+    margin-top: auto;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .intro-copy {
+    display: block;
+  }
+
+  .photo-small {
+    float: right;
+    width: auto;
+    max-width: 38%;
+    height: auto;
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .photo-small {
+    max-width: 48%;
+  }
+}
