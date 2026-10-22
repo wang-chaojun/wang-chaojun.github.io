@@ -1,8 +1,9 @@
 
-/* Global Layout Narrow container */
-@media (min-width: 1200px) {
+/* Global layout: keep one desktop container width across Bootstrap breakpoints. */
+@media (min-width: 992px) {
   .container {
-    width: 1000px;
+    width: 100%;
+    max-width: 1000px;
   }
 }
 
