@@ -179,12 +179,12 @@
     "scrollWidth": 720,
     "clientWidth": 720,
     "logo": {
-      "top": 15,
-      "bottom": 51.828125,
+      "top": 38.20000076293945,
+      "bottom": 75.02812194824219,
       "left": 105,
       "right": 255,
       "width": 150,
-      "height": 36.828125
+      "height": 36.828121185302734
     },
     "name": {
       "top": 29,
@@ -223,12 +223,12 @@
     "scrollWidth": 640,
     "clientWidth": 640,
     "logo": {
-      "top": 15,
-      "bottom": 51.828125,
+      "top": 38.20000076293945,
+      "bottom": 75.02812194824219,
       "left": 65,
       "right": 215,
       "width": 150,
-      "height": 36.828125
+      "height": 36.828121185302734
     },
     "name": {
       "top": 34.046875,
@@ -267,12 +267,12 @@
     "scrollWidth": 576,
     "clientWidth": 576,
     "logo": {
-      "top": 15,
-      "bottom": 51.828125,
+      "top": 38.20000076293945,
+      "bottom": 75.02812194824219,
       "left": 33,
       "right": 183,
       "width": 150,
-      "height": 36.828125
+      "height": 36.828121185302734
     },
     "name": {
       "top": 37,
