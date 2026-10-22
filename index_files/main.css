@@ -712,6 +712,20 @@ span.name {
     align-items: stretch;
   }
 
+  /* Float clearfix pseudo-elements must not become grid items. */
+  .legacy-profile-row::before,
+  .legacy-profile-row::after {
+    display: none;
+  }
+
+  .legacy-profile-photo {
+    grid-column: 1;
+  }
+
+  .legacy-profile-copy {
+    grid-column: 2;
+  }
+
   .legacy-profile-photo,
   .legacy-profile-copy {
     float: none;
