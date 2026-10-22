@@ -1,0 +1,75 @@
+name: Alignment Visual QA
+
+on:
+  push:
+    branches:
+      - fix-bootstrap5-alignment
+    paths:
+      - 'index.html'
+      - 'index_files/main.css'
+      - '.github/workflows/alignment-visual-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install browser tooling
+        run: |
+          python -m pip install playwright pillow
+          python -m playwright install chromium
+      - name: Render responsive cases
+        run: |
+          python -m http.server 8000 >/tmp/server.log 2>&1 &
+          sleep 2
+          cat > /tmp/render.py <<'PY'
+          from playwright.sync_api import sync_playwright
+          import os, json
+          os.makedirs(".qa-align", exist_ok=True)
+          cases = {
+            "desktop-1440":{"width":1440,"height":1000},
+            "zoomish-1152":{"width":1152,"height":900},
+            "zoomish-960":{"width":960,"height":900},
+            "zoomish-768":{"width":768,"height":900},
+            "mobile-390":{"width":390,"height":844},
+          }
+          out={}
+          with sync_playwright() as p:
+            browser=p.chromium.launch()
+            for name,vp in cases.items():
+              page=browser.new_page(viewport=vp)
+              page.goto("http://127.0.0.1:8000/index.html", wait_until="networkidle")
+              page.screenshot(path=f".qa-align/{name}.png", full_page=True)
+              vals=page.evaluate("""() => {
+                const q=s=>document.querySelector(s).getBoundingClientRect();
+                const logo=q('.div-logo img');
+                const name=q('span.name');
+                const photo=q('.intro-photo-col > img');
+                const cv=q('.cv-navigation');
+                const body=document.documentElement;
+                return {
+                  scrollWidth:body.scrollWidth, clientWidth:body.clientWidth,
+                  logoBottom:logo.bottom, nameBottom:name.bottom,
+                  logoNameBottomDelta:Math.abs(logo.bottom-name.bottom),
+                  photoBottom:photo.bottom, cvBottom:cv.bottom,
+                  photoCvBottomDelta:Math.abs(photo.bottom-cv.bottom),
+                  introTop:photo.top, cvTop:cv.top
+                };
+              }""")
+              out[name]=vals
+              page.close()
+            browser.close()
+          with open(".qa-align/metrics.json","w") as f: json.dump(out,f,indent=2)
+          PY
+          python /tmp/render.py
+          for f in .qa-align/*.png; do base64 -w0 "$f" > "$f.b64"; rm "$f"; done
+      - name: Commit QA artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .qa-align
+          git commit -m "Add temporary alignment visual QA" || exit 0
+          git push
