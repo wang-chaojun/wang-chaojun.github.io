@@ -1,0 +1,74 @@
+{
+  "1440": {
+    "photoBottom": 382,
+    "cvBottom": 382,
+    "delta": 0,
+    "photoHeight": 242,
+    "photoWidth": 203.828125,
+    "scrollWidth": 1440,
+    "clientWidth": 1440
+  },
+  "1152": {
+    "photoBottom": 382,
+    "cvBottom": 382,
+    "delta": 0,
+    "photoHeight": 242,
+    "photoWidth": 203.828125,
+    "scrollWidth": 1152,
+    "clientWidth": 1152
+  },
+  "960": {
+    "photoBottom": 422.796875,
+    "cvBottom": 422.796875,
+    "delta": 0,
+    "photoHeight": 282.796875,
+    "photoWidth": 210,
+    "scrollWidth": 960,
+    "clientWidth": 960
+  },
+  "873": {
+    "photoBottom": 422.796875,
+    "cvBottom": 422.796875,
+    "delta": 0,
+    "photoHeight": 282.796875,
+    "photoWidth": 210,
+    "scrollWidth": 873,
+    "clientWidth": 873
+  },
+  "820": {
+    "photoBottom": 422.796875,
+    "cvBottom": 422.796875,
+    "delta": 0,
+    "photoHeight": 282.796875,
+    "photoWidth": 210,
+    "scrollWidth": 820,
+    "clientWidth": 820
+  },
+  "720": {
+    "photoBottom": 436.21875,
+    "cvBottom": 436.21875,
+    "delta": 0,
+    "photoHeight": 304.21875,
+    "photoWidth": 150,
+    "scrollWidth": 720,
+    "clientWidth": 720
+  },
+  "640": {
+    "photoBottom": 436.21875,
+    "cvBottom": 436.21875,
+    "delta": 0,
+    "photoHeight": 304.21875,
+    "photoWidth": 150,
+    "scrollWidth": 640,
+    "clientWidth": 640
+  },
+  "576": {
+    "photoBottom": 436.21875,
+    "cvBottom": 436.21875,
+    "delta": 0,
+    "photoHeight": 304.21875,
+    "photoWidth": 150,
+    "scrollWidth": 576,
+    "clientWidth": 576
+  }
+}
