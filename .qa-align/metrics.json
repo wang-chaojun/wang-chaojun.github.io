@@ -1,0 +1,62 @@
+{
+  "desktop-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "logoBottom": 65.046875,
+    "nameBottom": 75,
+    "logoNameBottomDelta": 9.953125,
+    "photoBottom": 382,
+    "cvBottom": 382,
+    "photoCvBottomDelta": 0,
+    "introTop": 140,
+    "cvTop": 362
+  },
+  "zoomish-1152": {
+    "scrollWidth": 1152,
+    "clientWidth": 1152,
+    "logoBottom": 65.046875,
+    "nameBottom": 75,
+    "logoNameBottomDelta": 9.953125,
+    "photoBottom": 382,
+    "cvBottom": 382,
+    "photoCvBottomDelta": 0,
+    "introTop": 140,
+    "cvTop": 362
+  },
+  "zoomish-960": {
+    "scrollWidth": 960,
+    "clientWidth": 960,
+    "logoBottom": 65.046875,
+    "nameBottom": 75,
+    "logoNameBottomDelta": 9.953125,
+    "photoBottom": 389.3125,
+    "cvBottom": 422.796875,
+    "photoCvBottomDelta": 33.484375,
+    "introTop": 140,
+    "cvTop": 402.796875
+  },
+  "zoomish-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "logoBottom": 65.046875,
+    "nameBottom": 75,
+    "logoNameBottomDelta": 9.953125,
+    "photoBottom": 389.3125,
+    "cvBottom": 422.796875,
+    "photoCvBottomDelta": 33.484375,
+    "introTop": 140,
+    "cvTop": 402.796875
+  },
+  "mobile-390": {
+    "scrollWidth": 515,
+    "clientWidth": 390,
+    "logoBottom": 0,
+    "nameBottom": 75,
+    "logoNameBottomDelta": 75,
+    "photoBottom": 0,
+    "cvBottom": 619.9375,
+    "photoCvBottomDelta": 619.9375,
+    "introTop": 0,
+    "cvTop": 599.9375
+  }
+}
