@@ -472,12 +472,12 @@ span.name {
 
 @media (min-width: 576px) and (max-width: 767.98px) {
   .intro-row {
-    align-items: stretch !important;
+    align-items: flex-start !important;
   }
 
   .intro-photo-col {
     display: flex !important;
-    align-items: flex-end;
+    align-items: flex-start;
   }
 
   .intro-photo-col > img {
@@ -491,16 +491,25 @@ span.name {
   .intro-copy {
     display: flex;
     flex-direction: column;
+    min-height: 178px;
+  }
+
+  .intro-copy p {
+    font-size: 12px;
+    margin-bottom: 3px;
+    line-height: 1.2;
   }
 
   .intro-copy .cv-navigation {
     margin-top: auto;
     margin-bottom: 0;
+    font-size: 12px;
+    line-height: 1.2;
   }
 }
 
 
-/* At high zoom, align the first bio line with the top of the portrait. */
+/* At high zoom, align both ends of the bio block with the portrait. */
 @media (min-width: 768px) and (max-width: 1199.98px) {
   .intro-row {
     align-items: flex-start !important;
@@ -511,7 +520,7 @@ span.name {
   }
 
   .intro-copy {
-    min-height: 0;
+    min-height: 242px;
   }
 
   .intro-copy p {
@@ -520,7 +529,7 @@ span.name {
   }
 
   .intro-copy .cv-navigation {
-    margin-top: 1.8px;
+    margin-top: auto;
     margin-bottom: 0;
   }
 }
