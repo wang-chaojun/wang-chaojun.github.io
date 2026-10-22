@@ -10,9 +10,9 @@
   "new-desktop": {
     "scrollWidth": 1440,
     "clientWidth": 1440,
-    "scrollHeight": 3334,
-    "bodyFont": "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
-    "bodyFontSize": "16px",
+    "scrollHeight": 3004,
+    "bodyFont": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
+    "bodyFontSize": "14px",
     "h3Count": 4
   },
   "old-mobile": {
@@ -24,11 +24,11 @@
     "h3Count": 4
   },
   "new-mobile": {
-    "scrollWidth": 637,
+    "scrollWidth": 515,
     "clientWidth": 390,
-    "scrollHeight": 5368,
-    "bodyFont": "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
-    "bodyFontSize": "16px",
+    "scrollHeight": 4591,
+    "bodyFont": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
+    "bodyFontSize": "14px",
     "h3Count": 4
   },
   "diff-desktop": {
@@ -38,12 +38,12 @@
     ],
     "newSize": [
       1440,
-      3334
+      3004
     ],
     "meanAbsRGB": [
-      9.262,
-      11.343,
-      11.234
+      8.038,
+      10.063,
+      10.044
     ]
   },
   "diff-mobile": {
@@ -52,13 +52,13 @@
       4511
     ],
     "newSize": [
-      637,
-      5368
+      515,
+      4591
     ],
     "meanAbsRGB": [
-      15.456,
-      19.254,
-      19.154
+      13.661,
+      17.636,
+      17.639
     ]
   }
 }
