@@ -533,3 +533,76 @@ span.name {
     margin-bottom: 0;
   }
 }
+
+
+/* Authoritative intro layout: keep portrait top and CV bottom aligned at all non-mobile zoom levels. */
+@media (min-width: 576px) {
+  .intro-row {
+    --portrait-width: 203.8373px;
+    --portrait-height: 242px;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: start !important;
+    min-height: var(--portrait-height);
+  }
+
+  .intro-photo-col,
+  .intro-copy {
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0;
+    height: var(--portrait-height);
+    min-height: var(--portrait-height);
+    align-self: start !important;
+  }
+
+  .intro-photo-col {
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: flex-start;
+  }
+
+  .intro-photo-col > img {
+    display: block;
+    width: var(--portrait-width) !important;
+    height: var(--portrait-height) !important;
+    max-width: 100%;
+    max-height: none;
+    object-fit: cover;
+    margin: 0 !important;
+  }
+
+  .intro-copy {
+    display: flex !important;
+    flex-direction: column;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .intro-copy > p:first-of-type {
+    margin-top: 0 !important;
+  }
+
+  .intro-copy .cv-navigation {
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .intro-row {
+    --portrait-width: 150px;
+    --portrait-height: 178px;
+  }
+
+  .intro-copy p {
+    font-size: 12px;
+    line-height: 1.2;
+    margin-bottom: 3px;
+  }
+
+  .intro-copy .cv-navigation {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+}
