@@ -1,0 +1,77 @@
+name: CV render QA report
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/qa-cv-report.yml'
+permissions:
+  contents: write
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+      - name: Build render report
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils python3-pil
+          git show b660feb1da6773ec9df2abdbf8a43c7e80cefcd8:Wang_CV.pdf > /tmp/new.pdf
+          git show 7188494758a7afa2e27ce2d6205a547e58872764:Wang_CV.pdf > /tmp/old.pdf
+          mkdir -p /tmp/newpng /tmp/oldpng
+          pdftoppm -png -r 144 /tmp/new.pdf /tmp/newpng/page >/dev/null 2>&1
+          pdftoppm -png -r 144 /tmp/old.pdf /tmp/oldpng/page >/dev/null 2>&1
+          python3 - <<'PY' > .qa-cv-report.txt
+          from pathlib import Path
+          from PIL import Image, ImageChops
+          import subprocess
+
+          old_pages = sorted(Path('/tmp/oldpng').glob('page-*.png'))
+          new_pages = sorted(Path('/tmp/newpng').glob('page-*.png'))
+          print('old_pages', len(old_pages))
+          print('new_pages', len(new_pages))
+
+          expected = set()
+          for i in range(1, len(new_pages)+1):
+              text = subprocess.check_output(
+                  ['pdftotext','-f',str(i),'-l',str(i),'-layout','/tmp/new.pdf','-'],
+                  text=True
+              )
+              flags=[]
+              if 'Updated November, 2026' in text:
+                  expected.add(i); flags.append('date')
+              if 'JFE, Vol. 186 (2026)' in text:
+                  expected.add(i); flags.append('JFE')
+              if flags:
+                  print('expected_page', i, ','.join(flags))
+
+          changed=set()
+          for i,(op,np) in enumerate(zip(old_pages,new_pages),1):
+              a=Image.open(op).convert('RGB')
+              b=Image.open(np).convert('RGB')
+              print('page_size', i, a.size, b.size)
+              if a.size != b.size:
+                  print('size_mismatch', i)
+                  continue
+              diff=ImageChops.difference(a,b)
+              bbox=diff.getbbox()
+              if bbox:
+                  changed.add(i)
+                  w,h=a.size
+                  area=(bbox[2]-bbox[0])*(bbox[3]-bbox[1])/(w*h)
+                  nonzero=sum(1 for px in diff.getdata() if px != (0,0,0))
+                  frac=nonzero/(w*h)
+                  print('changed_page', i, 'bbox', bbox, 'bbox_area_frac', round(area,6), 'pixel_frac', round(frac,6))
+              else:
+                  print('unchanged_page', i)
+          print('expected_changed_pages', sorted(expected))
+          print('actual_changed_pages', sorted(changed))
+          PY
+      - name: Commit report
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .qa-cv-report.txt
+          git commit -m "Add temporary CV render QA report"
+          git push origin HEAD:main
