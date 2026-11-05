@@ -1,0 +1,28 @@
+name: Render CV pages for visual QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/render-cv-pages.yml'
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Render pages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils
+          rm -rf .qa-pages
+          mkdir -p .qa-pages
+          pdftoppm -png -r 144 Wang_CV.pdf .qa-pages/page >/dev/null 2>&1
+          test "$(find .qa-pages -name 'page-*.png' | wc -l)" -eq 5
+      - name: Commit page renders
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .qa-pages
+          git commit -m "Add temporary CV page renders for visual QA"
+          git push origin HEAD:main
